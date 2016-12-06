@@ -18,7 +18,7 @@ export class SimpleTreeDirective implements OnInit, OnDestroy, AfterContentInit,
               private _elementRef: ElementRef) { }
 
   ngOnInit(): void {
-    let treeName = this._elementRef.nativeElement.attributes['dd-tree'].value || new Date().getTime().toString();
+    let treeName = this._elementRef.nativeElement.attributes['simple-tree'].value || new Date().getTime().toString();
 
     this._treeNavigatorsProvider.register(treeName, this._treeNavigator);
   }
