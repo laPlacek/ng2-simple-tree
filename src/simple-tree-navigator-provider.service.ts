@@ -5,8 +5,11 @@ import { findKey } from 'lodash';
 @Injectable()
 export class SimpleTreeNavigatorsProvider {
   private _treeNavigators: { [treeName: string]: SimpleTreeNavigator } = {};
+  private _counter = 0;
 
-  register(treeName: string, treeNavigator: SimpleTreeNavigator) {
+  register(treeNavigator: SimpleTreeNavigator, treeName?: string) {
+    treeName = treeName || (++this._counter).toString();
+
     if (this._treeNavigators[treeName])
       throw 'Tree named ' + treeName + ' already exists';
 

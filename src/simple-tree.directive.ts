@@ -11,8 +11,6 @@ export class SimpleTreeDirective implements OnInit, OnDestroy, AfterContentInit,
   @ContentChildren(SimpleTreeItemDirective)
   private _treeItems: QueryList<SimpleTreeItemDirective>;
 
-  private _counter = 0;
-
   path: string;
 
   constructor(private _treeNavigator: SimpleTreeNavigator,
@@ -20,9 +18,9 @@ export class SimpleTreeDirective implements OnInit, OnDestroy, AfterContentInit,
               private _elementRef: ElementRef) { }
 
   ngOnInit(): void {
-    let treeName = this._elementRef.nativeElement.attributes['simple-tree'].value || (++this._counter).toString();
+    let treeName = this._elementRef.nativeElement.attributes['simple-tree'].value;
 
-    this._treeNavigatorsProvider.register(treeName, this._treeNavigator);
+    this._treeNavigatorsProvider.register(this._treeNavigator, treeName);
   }
 
   ngOnDestroy(): void {
