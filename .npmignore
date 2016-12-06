@@ -5,3 +5,4 @@ tsconfig.json
 .npmignore
 .gitignore
 *.ts
+!*.d.ts
