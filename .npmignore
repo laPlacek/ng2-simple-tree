@@ -1,7 +1,7 @@
 .idea/
 node_modules/
-src/
 npm-debug.log
 tsconfig.json
 .npmignore
 .gitignore
+*.ts

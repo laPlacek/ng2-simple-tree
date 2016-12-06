@@ -3,10 +3,8 @@
     "emitDecoratorMetadata": true,
     "removeComments": true,
     "experimentalDecorators": true,
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "node",
-    "outDir": "./lib",
-    "rootDir": "./src",
     "sourceMap": true,
     "inlineSources": true,
     "target": "es5",
@@ -19,9 +17,10 @@
     "node_modules"
   ],
   "files": [
-    "src/index.ts"
+    "index.ts"
   ],
   "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
     "strictMetadataEmit": true
   },
   "compileOnSave": false,
