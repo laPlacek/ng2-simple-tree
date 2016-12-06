@@ -1,6 +1,6 @@
 {
   "name": "@laplacek/ng2-simple-tree",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Simple template-driven tree for Angular2 using directives instead of components",
   "main": "index.js",
   "typings": "index.d.ts",
