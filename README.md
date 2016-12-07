@@ -84,8 +84,8 @@ One simple tree can contain the other.
 ```
 
 ## Using tree
-Every currently active **item** (the one _fully representing_ the path) has *active-tree-item* class set.  
-Every currently active **node** (item having any descendad active) has *active-tree-node* class set.
+Tree item **fully matching** current path has *active-tree-item* class set.  
+Tree item **having any descendad active** has *active-tree-node* class set.
 
 ## Accessing tree
 
@@ -107,8 +107,8 @@ export class TreeAwareComponent {
 ```
 
 ### From every other place in code
-Every tree can also be accessed from any other place in code. 
-To do that however, the tree must be defined with a name:
+Every tree can also be accessed from any other place in code.  
+To do that the tree must be defined with a name:
 ```html
 <div simple-tree="CarsTree">
   <div>Cars</div>
@@ -123,7 +123,7 @@ To do that however, the tree must be defined with a name:
 ```
 
 
-Accessing inside the service:
+It's *SimpleTreeNavigator* can than be accessed via *SimpleTreeNavigatorsProvider*:
 ```javascript
 @Injectable()
 export class TreeAwareService {
