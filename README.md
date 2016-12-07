@@ -15,10 +15,10 @@ npm install @laplacek/ng2-simple-tree –-save
 ```
 
 
-### Importing TranslationsModule
+### Importing module
 ```javascript
 @NgModule({
-  imports: [SimpleTree /*, … */]
+  imports: [SimpleTreeModule /*, … */]
 })
 export class SharedModule { }
 ```
