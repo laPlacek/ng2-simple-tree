@@ -95,7 +95,7 @@ Every *simple-tree* directive provides a *SimpleTreeNavigator* service. That mea
 @Component({
   // ...
 })
-export class SomeComponentUsingTree {
+export class TreeAwareComponent {
     currentPath: Observable<string> = this._simpleTreeNavigator.treePath;  //observable with current path
     
     constructor(private _simpleTreeNavigator: SimpleTreeNavigator){ }
@@ -126,7 +126,7 @@ To do that however, the tree must be defined with a name:
 Accessing inside the service:
 ```javascript
 @Injectable()
-export class SomeServiceUsingTree {
+export class TreeAwareService {
     constructor(private _simpleTreeNavigatorsProvider: SimpleTreeNavigatorsProvider){ }
     
     goToToyotaCorolla() {
