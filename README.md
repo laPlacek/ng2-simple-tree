@@ -71,7 +71,7 @@ One simple tree can contain the other.
       <li simple-tree-item>Trucks</li>
       <li simple-tree-item>
         <span>Roadsters</span>
-        <ul simple-tree>
+        <ul simple-tree> <!--Another, independent tree is defined-->
           <li simple-tree-item>BMW Z4</li>
           <li simple-tree-item>Mazda MX5</li>
         </ul>
