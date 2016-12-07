@@ -84,8 +84,8 @@ One simple tree can contain the other.
 ```
 
 ## Using tree
-### Every currently active **item** gets (the one fully representing the path) has *active-tree-item* class set.
-### Every currently active **node** (item having any descendad active) has *active-tree-node* class set.
+Every currently active **item** (the one _fully representing_ the path) has *active-tree-item* class set.  
+Every currently active **node** (item having any descendad active) has *active-tree-node* class set.
 
 ## Accessing tree
 
