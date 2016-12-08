@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import isUndefined = require('lodash/isUndefined');
 
 export interface NodeObservables {
   isCurrentNode: Observable<boolean>;
