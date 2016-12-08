@@ -29,7 +29,7 @@ export class SharedModule { }
 
 ### Defining tree
 Tree can be aplied on any markup element. Just use *simple-tree* directive for a tree root and *simple-tree-node* defining tree nodes.
-Every *simple-tree-node* inside other *simple-tree-node* will become it's child.
+Every *simple-tree-node* inside other *simple-tree-node* becomes it’s child.
 
 ```html
 <ul simple-tree>
@@ -61,7 +61,7 @@ Every *simple-tree-node* inside other *simple-tree-node* will become it's child.
 
 
 ### Defining one tree inside another
-One simple tree can contain the other.
+One simple tree can contain the other. The trees are then **independent**, so selecting/deselecting node in one, will not affect the nodes in another.
 
 ```html
 <ul simple-tree>
@@ -84,8 +84,8 @@ One simple tree can contain the other.
 ```
 
 ## Using tree
-Tree node **fully matching** current path has *current-node* class set.  
-Tree node **beeing current or having any current descendant** has *active-node* class set.
+**Current** node element has *current-node* class set.  
+Tree node element **beeing current or having any current descendant** has *active-node* class set.
 
 ## Accessing tree
 

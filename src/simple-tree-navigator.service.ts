@@ -13,8 +13,6 @@ export class SimpleTreeNavigator {
 
   goToNode = (node: any) => this._currentNode.next(node);
 
-  constructor() {}
-
   registerNode(node: any, parentNode?: any): NodeObservables {
     this._parentsMap.set(node, parentNode);
 
