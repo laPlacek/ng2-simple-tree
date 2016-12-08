@@ -28,33 +28,33 @@ export class SharedModule { }
 ## Building tree
 
 ### Defining tree
-Tree can be aplied on any markup element. Just use *simple-tree* directive for a tree root and *simple-tree-item* defining tree nodes.
-Every *simple-tree-item* inside other *simple-tree-item* will become it's child.
+Tree can be aplied on any markup element. Just use *simple-tree* directive for a tree root and *simple-tree-node* defining tree nodes.
+Every *simple-tree-node* inside other *simple-tree-node* will become it's child.
 
 ```html
 <ul simple-tree>
-  <li simple-tree-item [(isActiveItem)]="doYouLikeFruits">
+  <li simple-tree-node [(isCurrentNode)]="doYouLikeFruits">
     <span>Fruits</span>
     <ul>
-      <li simple-tree-item>Banana</li>
-      <li simple-tree-item>
+      <li simple-tree-node>Banana</li>
+      <li simple-tree-node>
         <span>Apple</span>
         <ul>
-          <li simple-tree-item>Yellow</li>
-          <li simple-tree-item>Red</li>
+          <li simple-tree-node>Yellow</li>
+          <li simple-tree-node>Red</li>
         </ul>
       </li>
-      <li simple-tree-item>Orange</li>
+      <li simple-tree-node>Orange</li>
     </ul>
   </li>
-  <li simple-tree-item [isActiveItem]="true">
+  <li simple-tree-node [isCurrentNode]="true">
     <span>Vegetables</span>
     <ul>
-      <li simple-tree-item>Tomato</li>
-      <li simple-tree-item>Carrot</li>
+      <li simple-tree-node>Tomato</li>
+      <li simple-tree-node>Carrot</li>
     </ul>
   </li>
-  <li simple-tree-item>No children item</li>
+  <li simple-tree-node>No children item</li>
 </ul>
 ```
 
@@ -65,27 +65,27 @@ One simple tree can contain the other.
 
 ```html
 <ul simple-tree>
-  <li simple-tree-item>
+  <li simple-tree-node>
     <span>Cars</span>
     <ul>
-      <li simple-tree-item>Trucks</li>
-      <li simple-tree-item>
+      <li simple-tree-node>Trucks</li>
+      <li simple-tree-node>
         <span>Roadsters</span>
         <ul simple-tree> <!--Another, independent tree is defined-->
-          <li simple-tree-item>BMW Z4</li>
-          <li simple-tree-item>Mazda MX5</li>
+          <li simple-tree-node>BMW Z4</li>
+          <li simple-tree-node>Mazda MX5</li>
         </ul>
       </li>
-      <li simple-tree-item>Orange</li>
+      <li simple-tree-node>Orange</li>
     </ul>
   </li>
-  <li simple-tree-item>Boats</li>
+  <li simple-tree-node>Boats</li>
 </ul>
 ```
 
 ## Using tree
-Tree item **fully matching** current path has *active-tree-item* class set.  
-Tree item **having any descendad active** has *active-tree-node* class set.
+Tree node **fully matching** current path has *current-node* class set.  
+Tree node **beeing current or having any current descendant** has *active-node* class set.
 
 ## Accessing tree
 
@@ -112,12 +112,12 @@ To do that the tree must be defined with a name:
 ```html
 <div simple-tree="CarsTree">
   <div>Cars</div>
-  <div simple-tree-item>BMW</div>
-  <div simple-tree-item>Mazda</div>
-  <div simple-tree-item>
+  <div simple-tree-node>BMW</div>
+  <div simple-tree-node>Mazda</div>
+  <div simple-tree-node>
       <span>Toyota</span>
-        <div simple-tree-item>Corolla</div>
-        <div simple-tree-item>RAV 4</div>
+        <div simple-tree-node>Corolla</div>
+        <div simple-tree-node>RAV 4</div>
   </div>    
 </div>
 ```
@@ -129,9 +129,9 @@ It's *SimpleTreeNavigator* can than be accessed via *SimpleTreeNavigatorsProvide
 export class TreeAwareService {
     constructor(private _simpleTreeNavigatorsProvider: SimpleTreeNavigatorsProvider){ }
     
-    goToToyotaCorolla() {
+    goUp() {
         let navigator = this._simpleTreeNavigatorsProvider.get('CarsTree');
-        navigator.goToPath('/3/1');
+        navigator.goUp();
     }
 }
 ```

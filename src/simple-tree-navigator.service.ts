@@ -1,39 +1,50 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { startsWith, each } from 'lodash';
+import isUndefined = require('lodash/isUndefined');
 
-const PATH_SEPARATOR = '/';
-
-export interface SimpleTreeNode {
-  path: string;
-  getChildren(): SimpleTreeNode[];
+export interface NodeObservables {
+  isCurrentNode: Observable<boolean>;
+  isActiveNode: Observable<boolean>;
 }
 
 @Injectable()
 export class SimpleTreeNavigator {
-  private _treePath = new BehaviorSubject<string>(PATH_SEPARATOR);
+  private _parentsMap = new Map<any, any>();
+  private _currentNode = new BehaviorSubject<any>(undefined);
 
-  treePath = this._treePath.distinctUntilChanged();
-  onInit = new EventEmitter();
+  goToNode = (node: any) => this._currentNode.next(node);
 
-  goToPath = (path: string) => this._treePath.next(path);
-  isSubpath = (path: string) => startsWith(this._treePath.value, path);
-  isCurrentPath = (path: string) => this._treePath.value === path;
+  constructor() {}
 
-  init(rootNode: SimpleTreeNode) {
-    this._setPath(PATH_SEPARATOR, rootNode);
-    this.onInit.emit();
+  registerNode(node: any, parentNode?: any): NodeObservables {
+    this._parentsMap.set(node, parentNode);
+
+    return {
+      isCurrentNode: this._createIsCurrentNodeObservable(node),
+      isActiveNode: this._createIsActiveNodeObservable(node)
+    }
+  }
+
+  unregisterNode(node: any): void {
+    this._parentsMap.delete(node);
+  }
+
+  _createIsCurrentNodeObservable(node: any): Observable<boolean> {
+    return this._currentNode.map(cn => cn === node);
+  }
+
+  _createIsActiveNodeObservable(node: any): Observable<boolean> {
+    return this._currentNode.map(cn => this._isAncestor(node, cn));
+  }
+
+  _isAncestor(node: any, node2?: any): boolean {
+    if (!node2) return false;
+    return node === node2 || this._isAncestor(node, this._parentsMap.get(node2));
   }
 
   goUp(): void {
-    let pathArray = this._treePath.value.split(PATH_SEPARATOR);
-    pathArray.splice(-2, 2);
-
-    this.goToPath(pathArray.join(PATH_SEPARATOR) + PATH_SEPARATOR);
-  }
-
-  private _setPath(path: string, treeNode: SimpleTreeNode) {
-    treeNode.path = path;
-    each(treeNode.getChildren(), (tn, i) => this._setPath(path + i + PATH_SEPARATOR, tn));
+    let parentNode = this._parentsMap.get(this._currentNode.value);
+    if(parentNode)
+      this._currentNode.next(parentNode);
   }
 }
